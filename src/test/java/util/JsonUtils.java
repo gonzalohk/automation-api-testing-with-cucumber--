@@ -21,6 +21,9 @@ public class JsonUtils {
     //Compare expectedResult vs actualResult
     public static boolean areEqualJSON(String expectedResult, String actualResult) throws JSONException {
         boolean areEqual = true;
+        System.out.println("Comparing...");
+        System.out.println(expectedResult);
+        System.out.println(actualResult);
 
         //String -> JSON
         JSONObject jsonExpectedResult= JsonUtils.convertJSON(expectedResult);
