@@ -1,4 +1,5 @@
 Feature: ItemsProject
+  @Regression
   Scenario: As a user I would like to add an item in a project
     Given I have access to https://todo.ly/
 
