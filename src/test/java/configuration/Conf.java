@@ -1,6 +1,6 @@
 package configuration;
 
-public class loConf {
+public class Conf {
     //Main URL
     public static final String HOST="http://todo.ly/";
 
