@@ -1,4 +1,4 @@
-## Automation API REST for todo.ly app
+## Automation API REST Testing for todo.ly app
 This is a small example to set up an automation API REST test environment with Java, Gradle, JUnit, and Cucumber.
 
 ### Project 
