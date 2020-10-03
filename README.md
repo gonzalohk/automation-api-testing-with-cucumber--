@@ -10,3 +10,7 @@ This is a small example to set up an automation API REST test environment with J
 * Update Item By Id
 * Delete Item By Id
 
+### Run
+```sh
+gradle clean cucumber -Psuite=@Regression
+```
