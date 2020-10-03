@@ -4,7 +4,7 @@ This is a small example to set up an automation API REST test environment with J
 ### Project 
 * [http://todo.ly/](http://todo.ly/)
 
-###Tests
+### Tests
 * Create new Item
 * Get Item By Id
 * Update Item By Id
