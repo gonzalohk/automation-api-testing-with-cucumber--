@@ -2,7 +2,7 @@
 This is a small example to set up an automation API REST test environment with Java, Gradle, JUnit, and Cucumber.
 
 ### Project 
-* [http://todo.ly/](http://todo.ly/)
+* [http://todo.ly/](http://todo.ly/) - API Documentation [here](http://todo.ly/ApiWiki/)
 
 ### Tests
 ##### User
