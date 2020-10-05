@@ -9,7 +9,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.json.JSONException;
 import org.junit.Assert;
-import util.Base64Utils;
+import util.AuthenticationUtils;
 import util.JsonUtils;
 
 
@@ -23,15 +23,24 @@ public class StepDefinitions {
     }
 
     @When("^I send (POST|PUT|DELETE|GET) request '(.*)' with json$")
-    public void iSendPOSTRequestApiItemsJson(String method, String url, String jsonBody) throws JSONException {
+    public void iSendRequestApiItemsJson(String method, String url, String jsonBody) throws JSONException {
         //Building request
         RequestInformation request = new RequestInformation();
         request.setUrl(HOST + this.replaceVariables(url));
         request.setBody(this.replaceVariables(jsonBody));
 
+        //Checking Token AUTH
+        //Workaround
         if (!url.equals("api/user.json")) {
-            if (GS.tokenAuthentication.isEmpty())
-                GS.tokenAuthentication=getTokenAuthentication();
+            if (GS.tokenAuthentication.isEmpty()) {
+                //Setting tokenAuthentication if it is empty
+                GS.tokenAuthentication = AuthenticationUtils.getTokenAuthentication(
+                        "GET",
+                        "api/authentication/token.json",
+                        GS.globalVariables.get("EMAIL_USER"),
+                        GS.globalVariables.get("PASSWORD_USER")
+                );
+            }
             request.addHeaders(TOKEN_HEADER,GS.tokenAuthentication);
         }
 
@@ -57,29 +66,17 @@ public class StepDefinitions {
         System.out.println(nameVariable + "("+GS.globalVariables.get(nameVariable)+") was saved");
     }
 
+    @And("^I save '(.*)' on (.*)")
+    public void iSaveValueOnID_ITEM(String property, String nameVariable ) throws JSONException {
+        GS.globalVariables.put(nameVariable, property);
+        System.out.println(nameVariable + "("+GS.globalVariables.get(nameVariable)+") was saved");
+    }
+
     private String replaceVariables(String value){
         for (String key: GS.globalVariables.keySet()){
             value= value.replace(key,GS.globalVariables.get(key));
         }
         return value;
-    }
-
-    public String getTokenAuthentication() throws JSONException {
-        String email =GS.globalVariables.get("EMAIL_USER");
-        String password =GS.globalVariables.get("EMAIL_USER");
-
-        //Building request
-        RequestInformation request = new RequestInformation();
-        request.setUrl(HOST + this.replaceVariables("api/authentication/token.json"));
-
-        //Adding AUTH basic
-        request.addHeaders(AUTHENTICATION_HEADER,"Basic " + Base64Utils.encodeBase64(email+":"+password));
-
-        //Sending
-        response = FactoryRequest.make("get").sendRequest(request);
-        System.out.println(response.getResponseBody());
-        String tokenAuthentication = JsonUtils.getValueFromJSON(response.getResponseBody(), "TokenString");
-        return tokenAuthentication;
     }
 
 }

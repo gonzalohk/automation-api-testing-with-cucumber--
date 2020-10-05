@@ -2,6 +2,8 @@ Feature: Projects
   @Regression
   Scenario: As a user I want to create a project so that organize my task
     Given I have access to https://todo.ly/
+
+    #TEST: Add Project
     When I send POST request 'api/projects.json' with json
     """
     {
@@ -33,10 +35,10 @@ Feature: Projects
         "SyncClientCreationId": null
     }
     """
-
     And I get the property value 'Id' and save on ID_PROJECT
     And I get the property value 'Content' and save on NAME_PROJECT
 
+    #TEST: Update Project
     When I send PUT request 'api/projects/ID_PROJECT.json' with json
     """
     {
@@ -44,9 +46,6 @@ Feature: Projects
        "Icon": 4
     }
     """
-
-    # verificar el response
-
     Then I expect the response code 200
     And I expect the response body is equal
     """
@@ -71,6 +70,8 @@ Feature: Projects
         "SyncClientCreationId": null
     }
     """
+
+    #TEST: Get Project
     When I send GET request 'api/projects/ID_PROJECT.json' with json
     """
     """
@@ -98,7 +99,18 @@ Feature: Projects
         "SyncClientCreationId": null
     }
     """
-    When I send DELETE request 'api/projects/ID_PROJECT.json' with json
+
+    #TEST: DElETE Project
+    When I send POST request 'api/projects.json' with json
+    """
+    {
+       "Content":"New Project 2",
+       "Icon": 4
+    }
+    """
+    Then I expect the response code 200
+    And I get the property value 'Id' and save on ID_PROJECT2
+    When I send DELETE request 'api/projects/ID_PROJECT2.json' with json
     """
     """
     Then I expect the response code 200

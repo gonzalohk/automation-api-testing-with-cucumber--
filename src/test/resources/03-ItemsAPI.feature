@@ -122,7 +122,25 @@ Feature: ItemsProject
        "OwnerId":"ID_USER"
     }
     """
-    When I send DELETE request 'api/items/ID_ITEM.json' with json
+
+    #TEST: DELETE Item by ID
+    When I send POST request 'api/items.json' with json
+    """
+    {
+      "Content":"New item to delete",
+      "ProjectId": "DEFAULT_PROJECT_ID_USER"
+    }
+    """
+    Then I expect the response code 200
+    And I get the property value 'Id' and save on ID_ITEM2
+    When I send PUT request 'api/items/ID_ITEM2.json' with json
+    """
+    {
+       "Checked": true
+    }
+    """
+    Then I expect the response code 200
+    When I send DELETE request 'api/items/ID_ITEM2.json' with json
     """
     """
     Then I expect the response code 200
