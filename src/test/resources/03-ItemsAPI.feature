@@ -8,7 +8,7 @@ Feature: ItemsProject
     """
     {
       "Content":"New item",
-      "ProjectId": "3870786"
+      "ProjectId": "DEFAULT_PROJECT_ID_USER"
     }
     """
     Then I expect the response code 200
@@ -19,7 +19,7 @@ Feature: ItemsProject
        "Content": "New item",
        "ItemType": "1",
        "Checked": false,
-       "ProjectId": "3870786",
+       "ProjectId": "DEFAULT_PROJECT_ID_USER",
        "ParentId": "null",
        "Path": "",
        "Collapsed": false,
@@ -40,7 +40,7 @@ Feature: ItemsProject
        "InHistory":false,
        "SyncClientCreationId":null,
        "DueTimeSpecified":true,
-       "OwnerId":676049
+       "OwnerId":"ID_USER"
     }
     """
     And I get the property value 'Id' and save on ID_ITEM
@@ -61,7 +61,7 @@ Feature: ItemsProject
        "Content": "New item",
        "ItemType": "1",
        "Checked": true,
-       "ProjectId": "3870786",
+       "ProjectId": "DEFAULT_PROJECT_ID_USER",
        "ParentId": "null",
        "Path": "",
        "Collapsed": false,
@@ -82,7 +82,7 @@ Feature: ItemsProject
        "InHistory":true,
        "SyncClientCreationId":null,
        "DueTimeSpecified":true,
-       "OwnerId":676049
+       "OwnerId":"ID_USER"
     }
     """
 
@@ -98,7 +98,7 @@ Feature: ItemsProject
        "Content": "New item",
        "ItemType": "1",
        "Checked": true,
-       "ProjectId": "3870786",
+       "ProjectId": "DEFAULT_PROJECT_ID_USER",
        "ParentId": "null",
        "Path": "",
        "Collapsed": false,
@@ -119,7 +119,7 @@ Feature: ItemsProject
        "InHistory":true,
        "SyncClientCreationId":null,
        "DueTimeSpecified":true,
-       "OwnerId":676049
+       "OwnerId":"ID_USER"
     }
     """
     When I send DELETE request 'api/items/ID_ITEM.json' with json
