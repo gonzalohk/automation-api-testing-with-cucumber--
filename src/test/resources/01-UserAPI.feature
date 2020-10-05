@@ -1,6 +1,6 @@
 Feature: Users
   @Regression
-  Scenario Outline: As a client I would like to create a todo.ly account
+  Scenario Outline: As a client I would like to create/update a todo.ly account
     Given I have access to https://todo.ly/
 
     #TEST: Create user
@@ -64,4 +64,4 @@ Feature: Users
    """
     Examples:
       | email | password | fullName |
-      | gonzalo@gmailgmail1.com | g&u10no!1 | Gonzalo Osco |
+      | gonzalo@gmailgmaisl1.com | g&u10no!1 | Gonzalo Osco |

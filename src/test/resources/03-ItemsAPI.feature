@@ -1,6 +1,6 @@
 Feature: ItemsProject
   @Regression
-  Scenario: As a user I would like to add an item in a project
+  Scenario: As a user I would like to add/update/get/delete an item in a project
     Given I have access to https://todo.ly/
 
     #TEST: Create Item

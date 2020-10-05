@@ -1,6 +1,6 @@
 Feature: Projects
   @Regression
-  Scenario: As a user I want to create a project so that organize my task
+  Scenario: As a user I want to create/update/get/delete a project so that organize my task
     Given I have access to https://todo.ly/
 
     #TEST: Add Project
